@@ -1,21 +1,27 @@
-<h2>Products</h2>
+<h2 class="section-title">Products</h2>
 
-<div *ngFor="let product of products">
-    <h3>
-        <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">{{product.name}}</a>
-    </h3>
+<div class="product-cards">
+    <div *ngFor="let product of products" class="product-card">
+        <div class="product-image">
+            <img src={{product.image}} alt="phone image reference">
+        </div>
 
-    <p *ngIf="product.description">
-        Description: {{product.description}}
-    </p>
+        <h3 class="product-title">
+            <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">{{product.name}}</a>
+        </h3>
 
-    <button type="button" (click)="share()">
-        Share
-    </button>
+        <p *ngIf="product.description" class="product-description">
+            {{product.description}}
+        </p>
 
-    <app-product-alerts [product]="product" (notify)="onNotify()">
-
-    </app-product-alerts>
+        <div class="button-group">
+            <button type="button" (click)="share()" class="share-button">
+                Share
+            </button>
+            <app-product-alerts [product]="product" (notify)="onNotify()">
+            </app-product-alerts>
+        </div>
+    </div>
 </div>
 <!-- 
 Copyright Google LLC. All Rights Reserved.
